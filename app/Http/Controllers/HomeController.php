@@ -25,7 +25,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-        if (Auth::check() && Auth::user()->admin) {
+        if ($request->id) {
             $user = User::find($request->id);
         } else
         $user = Auth::user();
@@ -43,15 +43,13 @@ class HomeController extends Controller
             'name' => 'required',
             'phone' => 'nullable|numeric|min:10',
         ]);
-        $user = User::find($request->id);
-        
+        $user = User::find($request->id);       
         if($request->hasFile('avatar')){ // Handle the user upload of avatar
             $avatar = $request->file('avatar');
             $avatar_name = time() . '.' . $avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(200, 200)->save( public_path('/uploads/avatars/' . $avatar_name ) );
         } else
-        $avatar_name = $user->avatar;
-        
+        $avatar_name = $user->avatar;        
         $user->company = $request->company;
         $user->name = $request->name;
         $user->surname = $request->surname;

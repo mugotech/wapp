@@ -15,8 +15,10 @@ class AdminController extends Controller
     }
     public function admin()
     {
-    	$users = DB::select('select * from users where admin = ?', [0]);
-        return view('admin', ['name' => Auth::user()->name, 'users' => $users]);
+    	
+        $users = User::where('admin', 0)->get();
+        $users = User::sortable()->paginate(8);
+        return view('admin', ['users' => $users]);
     }
 
     public function post(Request $request)
@@ -39,7 +41,7 @@ class AdminController extends Controller
         return redirect()->route('admin')->with('status', 'Profile data for '.$request->name. ' ' .$request->surname. ' updated successfuly!');//redirect to Admin dashboard after update with status
 
         } else
-        return Redirect()->back('home'); //not allowed to transact      
+        return Redirect()->back(); //not allowed to transact      
     }
 
     public function user_view(Request $request) {
@@ -49,7 +51,6 @@ class AdminController extends Controller
             return view('home', ['user' => $user]);
         } else
         return Redirect()->back('home');
-
     }
 
     public function delete(Request $request) {

@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Kyslik\ColumnSortable\Sortable;
 use Auth;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Sortable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,6 +19,13 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'surname', 'phone', 'company', 'avatar', 'password',
     ];
+
+    /**
+     * The attributes that are sortable.
+     *
+     * @var array
+     */
+    public $sortable = ['name', 'created_at', 'email',];
 
     /**
      * The attributes that should be hidden for arrays.

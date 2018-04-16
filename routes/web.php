@@ -12,11 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return Redirect('/admin');
 });
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');//user dashboard
 Route::post('/home/update', 'HomeController@update')->name('home.update');//user post update
 Route::get('/admin', 'AdminController@admin')->middleware('admin')->name('admin');//admin dasboard
