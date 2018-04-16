@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'surname', 'phone', 'company', 'avatar', 'password',
     ];
 
     /**
@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'admin',
+         'remember_token', 'admin',
     ];
 
     const ADMIN_TYPE = 1;
@@ -33,7 +33,6 @@ class User extends Authenticatable
     
     public function isAdmin()    {        
     return $this->admin === self::ADMIN_TYPE; 
-    //return Auth::user()->admin;  
     }
 
 }    

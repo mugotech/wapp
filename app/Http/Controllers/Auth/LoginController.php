@@ -26,8 +26,6 @@ class LoginController extends Controller
      *
      * @var string
      */
-    //protected $redirectTo = '/home';
-
     protected function redirectTo()
     {
         if (Auth::check() && Auth::user()->admin) {
@@ -35,6 +33,7 @@ class LoginController extends Controller
         }
         return '/home';
     }
+    
     /**
      * Create a new controller instance.
      *

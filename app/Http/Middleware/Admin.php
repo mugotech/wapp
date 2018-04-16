@@ -18,6 +18,6 @@ class Admin
             //return '/admin';
             return $next($request);
         }
-        return redirect('home');
+        return Redirect('home');
     }
 }
