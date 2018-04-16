@@ -14,5 +14,5 @@ When user clicks on the profile image it brings up an image uploader to replace 
 The Admin Dashboard showing all user registrations. From this list the admin should be able to view registration’s info,
 edit and delete as well as auto login to the users account.
 
-# Admin Modal
+# Admin Edit Modal
 When admin clicks on the edit icon of a specific registrant, a modal will popup which allows the admin to view and edit the user’s info.
